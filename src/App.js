@@ -1,24 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import "./App.css";
+import Header from "./components/Header";
+import NotesPage from "./pages/NotesPage";
+import Note from "./pages/Note";
 
+
+//json-server --watch db.json --port 5000
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="container dark ">
+        <div className="app">
+          <Header />
+          <Routes>
+            <Route element={<NotesPage />} path="/" exact />
+            <Route element={<Note />} path="/note/:id" />
+          </Routes>
+        </div>
+      </div>
+    </Router>
   );
 }
 
